@@ -1,0 +1,16 @@
+---
+- name: Create dummy file
+  ansible.builtin.copy:
+    dest: "{{ file_base_path }}/{{ file_prefix }}{{ ansible_date_time.date }}.txt"
+    content: "{{ ansible_date_time.iso8601 }}"
+    mode: 0666
+    force: true
+
+- name: Display dummy file
+  ansible.builtin.slurp:
+    src: "{{ file_base_path }}/{{ file_prefix }}{{ ansible_date_time.date }}.txt"
+  register: file_contents
+
+- name: Debug dummy file contents
+  ansible.builtin.debug:
+    msg: "{{ file_contents.source }} {{ file_contents.content | b64decode }}"
