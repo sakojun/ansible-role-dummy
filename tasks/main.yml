@@ -10,6 +10,7 @@
   ansible.builtin.slurp:
     src: "{{ file_base_path }}/{{ file_prefix }}{{ ansible_date_time.date }}.txt"
   register: file_contents
+  when: not ansible_check_mode
 
 - name: Debug dummy file contents
   ansible.builtin.debug:
