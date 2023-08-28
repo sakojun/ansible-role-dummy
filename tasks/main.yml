@@ -2,7 +2,7 @@
 - name: Create dummy file
   ansible.builtin.copy:
     dest: "{{ file_base_path }}/{{ file_prefix }}{{ ansible_date_time.date }}.txt"
-    content: "{{ ansible_date_time.iso8601 }} {{ message | default('') }} {{ env_message | default('') }}"
+    content: "{{ ansible_date_time.iso8601 }} {{ message }} {{ env_message | default('') }}"
     mode: 0666
     force: true
 
